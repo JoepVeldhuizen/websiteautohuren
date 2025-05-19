@@ -12,8 +12,8 @@
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // --- stap 2: Bepaal het "base path" (map t.o.v. webroot)
-// Onder Herd is dat "/", onder XAMPP bijv. "/rental"
-$baseScript = str_replace('\\','/', dirname($_SERVER['SCRIPT_NAME']));
+// Set the base path explicitly for your XAMPP setup
+$baseScript = '/rydr/websiteautohuren/rental-main/public';
 
 // --- stap 3: Trim het base path van de URI en verwijder leidende/trailende slashes
 $path = trim(substr($uri, strlen($baseScript)), '/');
