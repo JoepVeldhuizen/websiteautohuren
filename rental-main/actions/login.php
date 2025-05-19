@@ -12,3 +12,4 @@ if (password_verify($_POST['password'], $user['password'])) {
     $_SESSION['email'] = $user['email'];
     header('Location: ./');
 }
+
