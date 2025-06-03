@@ -32,7 +32,8 @@ CREATE TABLE `cars` (
 INSERT INTO `cars` (`brand`, `model`, `year`, `price_per_day`, `image`, `description`, `available`) VALUES
 ('BMW', '3 Series', 2022, 89.99, 'bmw-3-series.jpg', 'Luxe BMW 3 Series met alle moderne gemakken', 1),
 ('Mercedes', 'C-Class', 2023, 99.99, 'mercedes-c-class.jpg', 'Elegante Mercedes C-Class met premium interieur', 1),
-('Audi', 'A4', 2022, 94.99, 'audi-a4.jpg', 'Stijlvolle Audi A4 met quattro all-wheel drive', 1);
+('Audi', 'A4', 2022, 94.99, 'audi-a4.jpg', 'Stijlvolle Audi A4 met quattro all-wheel drive', 1),
+('Mercedes', 'E63', 2012, 120,-, 'e63.jpg', 'De Mercedes E63 AMG W212 is een brute sportsedan die luxueus comfort combineert met een 6.2-liter V8-krachtbron en rauwe prestaties.', 1);
 
 CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
