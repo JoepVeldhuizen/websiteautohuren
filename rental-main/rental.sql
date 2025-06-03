@@ -1,4 +1,3 @@
-
 CREATE TABLE `account` (
   `id` int NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -16,3 +15,40 @@ ALTER TABLE `account`
   
 ALTER TABLE `account`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+CREATE TABLE `cars` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `brand` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  `year` int NOT NULL,
+  `price_per_day` decimal(10,2) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `description` text,
+  `available` tinyint(1) DEFAULT 1,
+  `category_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `cars` (`brand`, `model`, `year`, `price_per_day`, `image`, `description`, `available`) VALUES
+('BMW', '3 Series', 2022, 89.99, 'bmw-3-series.jpg', 'Luxe BMW 3 Series met alle moderne gemakken', 1),
+('Mercedes', 'C-Class', 2023, 99.99, 'mercedes-c-class.jpg', 'Elegante Mercedes C-Class met premium interieur', 1),
+('Audi', 'A4', 2022, 94.99, 'audi-a4.jpg', 'Stijlvolle Audi A4 met quattro all-wheel drive', 1);
+
+CREATE TABLE `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `categories` (`name`, `description`) VALUES
+('Sport', 'Snelle en sportieve auto\'s'),
+('Luxe', 'Luxe en comfortabele auto\'s'),
+('Economie', 'Voordelige en zuinige auto\'s'),
+('SUV', 'Ruime en robuuste auto\'s');
+
+UPDATE `cars` SET `category_id` = 1 WHERE `brand` IN ('BMW', 'Mercedes');
+UPDATE `cars` SET `category_id` = 2 WHERE `brand` = 'Audi';
+
+ALTER TABLE `cars`
+ADD CONSTRAINT `fk_car_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
