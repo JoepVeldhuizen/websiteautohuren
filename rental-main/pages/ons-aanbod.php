@@ -45,7 +45,7 @@ $cars = getAvailableCars($selectedCategory);
         <div class="cars-grid">
             <?php foreach ($cars as $car): ?>
                 <div class="car-card">
-                    <img src="../../public/images/cars/<?php echo htmlspecialchars($car['image']); ?>" 
+                    <img src="/rydr/websiteautohuren/rental-main/public/images/cars/<?php echo htmlspecialchars($car['image']); ?>" 
                          alt="<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>">
                     <div class="car-info">
                         <h2><?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?></h2>

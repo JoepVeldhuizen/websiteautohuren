@@ -23,9 +23,9 @@ require_once __DIR__ . '/../includes/header.php';
             <div class="advertorial">
                 <h2><?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?></h2>
                 <p><?php echo htmlspecialchars($car['description']); ?></p>
-                <img src="../../public/images/cars/<?php echo htmlspecialchars($car['image']); ?>" 
+                <img src="/rydr/websiteautohuren/rental-main/public/images/cars/<?php echo htmlspecialchars($car['image']); ?>" 
                      alt="<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>">
-                <img src="../../public/assets/images/header-circle-background.svg" alt="" class="background-header-element">
+                <img src="/rydr/websiteautohuren/rental-main/public/assets/images/header-circle-background.svg" alt="" class="background-header-element">
             </div>
         </div>
         <div class="row white-background">
