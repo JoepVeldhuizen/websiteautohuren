@@ -58,4 +58,24 @@ function getAllCategories() {
         error_log("Error fetching categories: " . $e->getMessage());
         return [];
     }
+}
+
+function searchCarsByBrand($searchTerm) {
+    global $conn;
+    
+    try {
+        $searchTerm = "%" . $searchTerm . "%";
+        $stmt = $conn->prepare("SELECT c.*, cat.name as category_name 
+                               FROM cars c 
+                               JOIN categories cat ON c.category_id = cat.id 
+                               WHERE c.available = 1 
+                               AND (c.brand LIKE :search OR c.model LIKE :search)
+                               ORDER BY c.brand, c.model");
+        $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        error_log("Error searching cars: " . $e->getMessage());
+        return [];
+    }
 } 

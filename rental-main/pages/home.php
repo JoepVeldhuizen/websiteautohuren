@@ -19,8 +19,6 @@ $cars = getAvailableCars();
     <main class="container">
         <h1>Beschikbare Auto's</h1>
         
-       
-        
         <div class="cars-grid">
             <?php foreach ($cars as $car): ?>
                 <div class="car-card">
