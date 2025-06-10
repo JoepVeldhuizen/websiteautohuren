@@ -34,6 +34,21 @@ if ($path === 'register-handler') {
     exit;
 }
 
+if ($path === 'rental-handler') {
+    require_once __DIR__ . '/../actions/rental-handler.php';
+    exit;
+}
+
+if ($path === 'profile-handler') {
+    require_once __DIR__ . '/../actions/profile-handler.php';
+    exit;
+}
+
+if ($path === 'password-handler') {
+    require_once __DIR__ . '/../actions/password-handler.php';
+    exit;
+}
+
 // --- stap 4: Bepaal welke pagina we willen tonen
 $page = $path ?: 'home';
 $file = __DIR__ . '/../pages/' . $page . '.php';

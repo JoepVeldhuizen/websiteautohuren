@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!doctype html>
 <html lang="nl">
 <head>
@@ -31,19 +35,22 @@
         </ul>
     </nav>
     <div class="menu">
-        <?php if(isset($_SESSION['id'])){ ?>
-        <div class="account">
-            <img src="/rydr/websiteautohuren/rental-main/public/assets/images/profil.png" alt="Profiel" aria-label="Account menu">
-            <div class="account-dropdown">
-                <ul>
-                    <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/setting.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/account" class="dropdown-link">Naar account</a></li>
-                    <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/logout.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/logout" class="dropdown-link">Uitloggen</a></li>
-                </ul>
+        <?php if(isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
+            <div class="account">
+                <img src="/rydr/websiteautohuren/rental-main/public/assets/images/profil.png" alt="Profiel" aria-label="Account menu">
+                <div class="account-dropdown">
+                    <ul>
+                        <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/setting.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/account" class="dropdown-link">Naar account</a></li>
+                        <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/logout.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/logout" class="dropdown-link">Uitloggen</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <?php }else{ ?>
-            <a href="/rydr/websiteautohuren/rental-main/public/register" class="button-primary">Start met huren</a>
-        <?php } ?>
+        <?php else: ?>
+            <div class="auth-buttons">
+                <a href="/rydr/websiteautohuren/rental-main/public/login-form" class="button-secondary">Inloggen</a>
+                <a href="/rydr/websiteautohuren/rental-main/public/register" class="button-primary">Start met huren</a>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 <div class="content">
