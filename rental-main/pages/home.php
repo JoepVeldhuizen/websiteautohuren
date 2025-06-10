@@ -8,7 +8,8 @@ $cars = getAvailableCars();
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Ontdek ons uitgebreide aanbod van huurauto's. Van compacte stadsauto's tot luxe voertuigen - vind de perfecte auto voor uw reis. Bekijk onze beschikbare auto's en maak direct een reservering.">
     <title>Auto Verhuur - Home</title>
     <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
 </head>

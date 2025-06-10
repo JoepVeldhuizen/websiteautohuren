@@ -35,7 +35,7 @@ main {
 }
 
 .accent-color {
-  color: #90A3BF;
+  color: #212121;
 }
 
 .button-primary {
@@ -109,7 +109,7 @@ main {
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
   text-decoration: none;
-  color: #333;
+  color: #212121;
   font-weight: 600;
   transition: background-color 0.2s;
   cursor: pointer;
@@ -239,7 +239,7 @@ footer .footer-links .links ul {
 }
 footer .footer-links .links ul a {
   text-decoration: none;
-  color: #90A3BF;
+  color: #212121;
 }
 
 .legal-footer {
@@ -303,7 +303,7 @@ footer .footer-links .links ul a {
 .topbar form input[type=search] {
   padding: 10px 40px 10px 40px; /* ruimte voor icoon links */
   width: 80%;
-  border: 1px solid #C3D4E9;
+  border: 1px solid #3c3c3c;
   border-radius: 70px;
   font-size: 14px;
   min-width: 200px;
@@ -331,7 +331,7 @@ footer .footer-links .links ul a {
 }
 .topbar nav ul a {
   text-decoration: none;
-  color: #7ca6c3;
+  color: #202020;
 }
 .topbar .menu {
   flex: 1;

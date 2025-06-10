@@ -7,9 +7,9 @@
 }
 
 .car-card {
-    background: #fff;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     overflow: hidden;
     transition: transform 0.2s ease-in-out;
 }
@@ -31,25 +31,27 @@
 .car-info h2 {
     margin: 0 0 1rem;
     font-size: 1.5rem;
-    color: #333;
+    color: #000000;
+    font-weight: 700;
 }
 
 .car-info .year {
-    color: #666;
+    color: #000000;
     margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .car-info .price {
     font-size: 1.25rem;
-    font-weight: bold;
-    color: #2c5282;
+    font-weight: 700;
+    color: #000000;
     margin: 1rem 0;
 }
 
 .car-info .description {
-    color: #666;
+    color: #000000;
     margin-bottom: 1.5rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .btn {
@@ -59,29 +61,38 @@
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.2s ease-in-out;
+    text-align: center;
+    min-width: 120px;
 }
 
 .btn-primary {
-    background-color: #2c5282;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
 }
 
-.btn-primary:hover {
-    background-color: #2a4365;
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #333333;
+    border-color: #333333;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
 }
 
 /* Category Filter */
 .category-filter {
     margin: 2rem 0;
-    padding: 1rem;
-    background: #f8f9fa;
+    padding: 1.5rem;
+    background: #ffffff;
     border-radius: 8px;
+    border: 1px solid #000000;
 }
 
 .category-filter h2 {
     margin-bottom: 1rem;
     font-size: 1.25rem;
-    color: #333;
+    color: #000000;
+    font-weight: 700;
 }
 
 .category-buttons {
@@ -91,20 +102,251 @@
 }
 
 .btn-secondary {
-    background-color: #e2e8f0;
-    color: #2d3748;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
 }
 
-.btn-secondary:hover {
-    background-color: #cbd5e0;
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #f0f0f0;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
 }
 
 .car-info .category {
     display: inline-block;
     padding: 0.25rem 0.75rem;
-    background-color: #e2e8f0;
-    color: #2d3748;
+    background-color: #000000;
+    color: #ffffff;
     border-radius: 9999px;
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Focus styles for better accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+/* Ensure sufficient text size */
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+}
+
+/* Ensure sufficient spacing for touch targets */
+input,
+select,
+textarea,
+button,
+.btn {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+}
+
+/* Ensure sufficient spacing between interactive elements */
+a,
+button,
+.btn {
+    margin: 0.5rem 0;
+}
+
+/* Ensure sufficient contrast for form elements */
+input,
+select,
+textarea {
+    border: 2px solid #000000;
+    padding: 0.5rem;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #666666;
+}
+
+/* Ensure sufficient contrast for error messages */
+.error-message {
+    color: #000000;
+    background-color: #ffebee;
+    border: 2px solid #000000;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
+/* Ensure sufficient contrast for success messages */
+.success-message {
+    color: #000000;
+    background-color: #e8f5e9;
+    border: 2px solid #000000;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
+/* Topbar styles */
+.topbar {
+    background-color: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.logo-link:hover,
+.logo-link:focus {
+    text-decoration: underline;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+.nav-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    text-decoration: underline;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #ffffff;
+    padding: 3rem 2rem;
+    border-top: 2px solid #000000;
+}
+
+footer h2,
+footer h3 {
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.footer-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0;
+    display: inline-block;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+    text-decoration: underline;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+.legal-footer {
+    background-color: #f8f8f8;
+    padding: 1rem 2rem;
+    border-top: 1px solid #000000;
+}
+
+.legal-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+}
+
+.legal-link:hover,
+.legal-link:focus {
+    text-decoration: underline;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+/* Dropdown styles */
+.dropdown-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-link:hover,
+.dropdown-link:focus {
+    background-color: #f0f0f0;
+    text-decoration: underline;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+/* Search input styles */
+input[type="search"] {
+    border: 2px solid #000000;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+input[type="search"]::placeholder {
+    color: #666666;
+}
+
+input[type="search"]:focus {
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+/* Modal styles */
+.modal-content {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    padding: 2rem;
+}
+
+.modal-content h2 {
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: #000000;
+    margin-bottom: 1.5rem;
+}
+
+.modal-close {
+    color: #000000;
+    background: none;
+    border: 2px solid #000000;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    background-color: #f0f0f0;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
 } 

@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Log in op uw account om uw autoverhuur te beheren. Bekijk uw reserveringen, maak nieuwe boekingen en beheer uw persoonlijke gegevens.">
+    <title>Inloggen - Auto Verhuur</title>
+    <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
+</head>
+<body>
 <?php require "../includes/header.php" ?>
 <main>
     <form action="./login-handler" class="account-form" method="post">
@@ -14,3 +24,5 @@
 </main>
 
 <?php require "../includes/footer.php" ?>
+</body>
+</html>

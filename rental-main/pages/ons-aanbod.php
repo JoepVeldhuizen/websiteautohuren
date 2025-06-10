@@ -15,7 +15,8 @@ $cars = getAvailableCars($selectedCategory);
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Bekijk ons complete aanbod van huurauto's. Van economische modellen tot luxe voertuigen - wij hebben de perfecte auto voor elke gelegenheid. Vind uw ideale huurauto vandaag nog.">
     <title>Ons Aanbod - Auto Verhuur</title>
     <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
 </head>

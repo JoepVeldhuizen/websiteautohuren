@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Leer meer over onze autoverhuur service. Ontdek waarom klanten voor ons kiezen, onze geschiedenis en onze toewijding aan kwaliteit en klantenservice.">
+    <title>Over Ons - Auto Verhuur</title>
+    <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
+</head>
+<body>
 <?php require "../includes/header.php" ?>
 <main>
     <img src="./assets/images/banner.jpeg" alt="" width="1200">
@@ -18,3 +28,6 @@
 
 
 <?php require "../includes/footer.php" ?>
+
+</body>
+</html>

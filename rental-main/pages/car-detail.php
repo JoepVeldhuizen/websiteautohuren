@@ -17,6 +17,16 @@ if (!$car) {
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Bekijk gedetailleerde informatie over onze huurauto's. Specificaties, prijzen, beschikbaarheid en meer. Maak direct een reservering voor uw gewenste auto.">
+    <title>Auto Details</title>
+    <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
+</head>
+
 <main class="car-detail">
     <div class="grid">
         <div class="row">

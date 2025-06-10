@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Registreer een nieuw account bij onze autoverhuur service. Maak eenvoudig reserveringen, beheer uw boekingen en profiteer van exclusieve voordelen.">
+    <title>Registreren - Auto Verhuur</title>
+    <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
+</head>
+<body>
 <?php require "../includes/header.php" ?>
 <main>
     <form action="./register-handler" method="post" class="account-form">
@@ -20,3 +30,5 @@
 </main>
 
 <?php require "../includes/footer.php" ?>
+</body>
+</html>
