@@ -15,7 +15,8 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex: 1;
+    flex: 0 1 auto;
+    min-width: 0;
 
     a {
       display: inline-block;
@@ -29,6 +30,7 @@
       line-height: 150%; /* or 48px */
       align-items: center;
       letter-spacing: -0.03em;
+      white-space: nowrap;
       img {
         width: 40px;
         height: auto;
@@ -38,11 +40,12 @@
 
   form {
     position: relative;
-    flex: 2;
-    min-width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0 2rem;
     input[type="search"] {
       padding: 10px 40px 10px 40px; /* ruimte voor icoon links */
-      width: 80%;
+      width: 100%;
       border: 1px solid #727478;
       border-radius: 70px;
       font-size: 14px;
@@ -68,23 +71,37 @@
   }
 
   nav{
+    flex: 0 1 auto;
+    min-width: 0;
     ul{
       display: flex;
       gap: 1em;
       list-style: none;
       padding-left: 0;
+      flex-wrap: nowrap;
       a{
         text-decoration: none;
         color: #151515;
+        white-space: nowrap;
       }
     }
   }
 
   .menu {
-    flex: 1;
+    flex: 0 1 auto;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    white-space: nowrap;
+    
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+
     .account {
       color: white;
       border-radius: 999px;
@@ -140,6 +157,54 @@
 
       &.active .account-dropdown {
         display: block;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .topbar {
+    padding: 1rem 2rem;
+    
+    form {
+      margin: 0 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+    
+    .logo {
+      flex: 1 1 100%;
+      justify-content: center;
+    }
+    
+    form {
+      flex: 1 1 100%;
+      margin: 0;
+    }
+    
+    nav {
+      flex: 1 1 100%;
+      justify-content: center;
+      
+      ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+    
+    .menu {
+      flex: 1 1 100%;
+      justify-content: center;
+      
+      .auth-buttons {
+        width: 100%;
+        justify-content: center;
       }
     }
   }
