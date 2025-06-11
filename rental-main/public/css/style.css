@@ -745,4 +745,13 @@ input[type="search"]:focus {
     .rentals-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.form-container {
+    width: 40vw;
+    margin: 0 auto;
+    padding: 2px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 } 

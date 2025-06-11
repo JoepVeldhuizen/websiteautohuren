@@ -1,100 +1,64 @@
 <?php
 session_start();
+error_log("Profile handler - Starting profile update");
+error_log("Session data: " . print_r($_SESSION, true));
+error_log("POST data: " . print_r($_POST, true));
+
 require_once "../database/connection.php";
 
-// Check if user is logged in
 if (!isset($_SESSION['id'])) {
-    $_SESSION['error'] = "U moet ingelogd zijn om uw profiel te wijzigen";
-    header('Location: ./login-form');
-    exit;
+    error_log("Profile handler - No session ID found");
+    $_SESSION['error'] = "Je moet ingelogd zijn om je profiel te bewerken";
+    header('Location: /rydr/websiteautohuren/rental-main/public/login-form');
+    exit();
 }
 
-// Validate input
 if (!isset($_POST['name']) || !isset($_POST['email'])) {
-    $_SESSION['error'] = "Alle velden moeten worden ingevuld";
-    header('Location: ./account');
-    exit;
+    error_log("Profile handler - Missing required fields");
+    $_SESSION['error'] = "Vul alle verplichte velden in";
+    header('Location: /rydr/websiteautohuren/rental-main/public/account');
+    exit();
 }
 
-$userId = $_SESSION['id'];
-$name = trim($_POST['name']);
-$email = trim($_POST['email']);
+$user_id = $_SESSION['id'];
+$new_name = $_POST['name'];
+$new_email = $_POST['email'];
 
-// Validate email
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['error'] = "Ongeldig e-mailadres";
-    header('Location: ./account');
-    exit;
-}
+error_log("Processing update for user ID: " . $user_id);
+error_log("New name: " . $new_name);
+error_log("New email: " . $new_email);
 
-try {
-    // Check if email is already in use by another user
-    $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = :email AND id != :user_id");
-    $checkEmail->bindParam(':email', $email);
-    $checkEmail->bindParam(':user_id', $userId);
-    $checkEmail->execute();
+// Eerst proberen in de users tabel
+$update_user = $conn->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
+$update_user->bindParam(":name", $new_name);
+$update_user->bindParam(":email", $new_email);
+$update_user->bindParam(":id", $user_id);
+$update_user->execute();
+
+// Als er geen rijen zijn bijgewerkt in users, probeer dan de account tabel
+if ($update_user->rowCount() === 0) {
+    error_log("No update in users table, trying account table");
+    $update_account = $conn->prepare("UPDATE account SET name = :name, email = :email WHERE id = :id");
+    $update_account->bindParam(":name", $new_name);
+    $update_account->bindParam(":email", $new_email);
+    $update_account->bindParam(":id", $user_id);
+    $update_account->execute();
     
-    if ($checkEmail->fetch()) {
-        $_SESSION['error'] = "Dit e-mailadres is al in gebruik";
-        header('Location: ./account');
-        exit;
+    if ($update_account->rowCount() === 0) {
+        error_log("No update in account table either");
+        $_SESSION['error'] = "Gebruiker niet gevonden";
+    } else {
+        error_log("Successfully updated account table");
+        $_SESSION['success'] = "Profiel succesvol bijgewerkt";
     }
+} else {
+    error_log("Successfully updated users table");
+    $_SESSION['success'] = "Profiel succesvol bijgewerkt";
+}
 
-    // Handle profile image upload
-    $profileImage = null;
-    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        $maxSize = 5 * 1024 * 1024; // 5MB
+// Update de sessie variabelen
+$_SESSION['name'] = $new_name;
+$_SESSION['email'] = $new_email;
 
-        if (!in_array($_FILES['profile_image']['type'], $allowedTypes)) {
-            $_SESSION['error'] = "Alleen JPEG, PNG en GIF afbeeldingen zijn toegestaan";
-            header('Location: ./account');
-            exit;
-        }
-
-        if ($_FILES['profile_image']['size'] > $maxSize) {
-            $_SESSION['error'] = "De afbeelding mag niet groter zijn dan 5MB";
-            header('Location: ./account');
-            exit;
-        }
-
-        $uploadDir = __DIR__ . '/../public/images/profiles/';
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-
-        $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
-        $filename = uniqid('profile_') . '.' . $extension;
-        $uploadPath = $uploadDir . $filename;
-
-        if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
-            $profileImage = $filename;
-        }
-    }
-
-    // Update user profile
-    $updateQuery = "UPDATE users SET name = :name, email = :email";
-    if ($profileImage) {
-        $updateQuery .= ", profile_image = :profile_image";
-    }
-    $updateQuery .= " WHERE id = :user_id";
-
-    $stmt = $conn->prepare($updateQuery);
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':email', $email);
-    if ($profileImage) {
-        $stmt->bindParam(':profile_image', $profileImage);
-    }
-    $stmt->bindParam(':user_id', $userId);
-    $stmt->execute();
-
-    $_SESSION['success'] = "Uw profiel is succesvol bijgewerkt";
-    header('Location: ./account');
-    exit;
-
-} catch(PDOException $e) {
-    error_log("Error updating profile: " . $e->getMessage());
-    $_SESSION['error'] = "Er is een fout opgetreden bij het bijwerken van uw profiel";
-    header('Location: ./account');
-    exit;
-} 
+header('Location: /rydr/websiteautohuren/rental-main/public/account');
+exit(); 

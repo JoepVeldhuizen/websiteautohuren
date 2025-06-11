@@ -1,11 +1,15 @@
 <?php
+session_start();
+error_log("Account page - Session data: " . print_r($_SESSION, true));
+
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../database/connection.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['id'])) {
+    error_log("Account page - No session ID found");
     $_SESSION['error'] = "U moet ingelogd zijn om uw profiel te bekijken";
-    header('Location: ./login-form');
+    header('Location: /rydr/websiteautohuren/rental-main/public/login-form');
     exit;
 }
 
@@ -66,8 +70,8 @@ $rentals = $rentalStmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mijn Account - Rydr</title>
-    <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
+    <title>Account - Rydr</title>
+    <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/account.css">
     <style>
         /* Fallback styles in case the external CSS fails to load */
         .account-container {
@@ -206,33 +210,26 @@ $rentals = $rentalStmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="account-container">
             <div class="profile-section">
                 <h2>Profiel Informatie</h2>
-                <form action="./profile-handler" method="post" enctype="multipart/form-data" class="profile-form">
-                    <div class="profile-image">
-                        <img src="<?php echo $user['profile_image'] ? '/rydr/websiteautohuren/rental-main/public/images/profiles/' . htmlspecialchars($user['profile_image']) : '/rydr/websiteautohuren/rental-main/public/images/default-profile.png'; ?>" 
-                             alt="Profiel foto">
+                <div class="form-container" class="password-form" style="width: 500px;">
+                    <form action="/rydr/websiteautohuren/rental-main/actions/profile-handler.php" method="POST" class="profile-form">
                         <div class="form-group">
-                            <label for="profile_image">Wijzig profielfoto</label>
-                            <input type="file" id="profile_image" name="profile_image" accept="image/*">
+                            <label for="name">Naam</label>
+                            <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name'] ?? ''); ?>" required>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="name">Naam</label>
-                        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
-                    </div>
-
-                    <button type="submit" class="button-primary">Update Profiel</button>
-                </form>
+                        <button type="submit" class="button-primary">Update Profiel</button>
+                    </form>
+                </div>
             </div>
 
             <div class="password-section">
                 <h2>Wachtwoord Wijzigen</h2>
-                <form action="./password-handler" method="post" class="password-form">
+                <form action="/rydr/websiteautohuren/rental-main/public/password-handler" method="post" class="password-form">
                     <div class="form-group">
                         <label for="current_password">Huidig Wachtwoord</label>
                         <input type="password" id="current_password" name="current_password" required>
