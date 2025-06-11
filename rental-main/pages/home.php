@@ -45,3 +45,4 @@ $cars = getAvailableCars();
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 </body>
 </html>
+<a href="home.php" class="button-primary small-button">START MET HUREN</a>
