@@ -16,6 +16,38 @@ $stmt->bindParam(':id', $userId);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Check if user exists
+if (!$user) {
+    // Try to get user from account table as fallback
+    $stmt = $conn->prepare("SELECT * FROM account WHERE id = :id");
+    $stmt->bindParam(':id', $userId);
+    $stmt->execute();
+    $accountUser = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($accountUser) {
+        // If found in account table, migrate this user
+        $name = explode('@', $accountUser['email'])[0];
+        $insertStmt = $conn->prepare("INSERT INTO users (id, email, password, name, created_at) 
+                                     VALUES (:id, :email, :password, :name, NOW())");
+        $insertStmt->execute([
+            ':id' => $accountUser['id'],
+            ':email' => $accountUser['email'],
+            ':password' => $accountUser['password'],
+            ':name' => $name
+        ]);
+        
+        // Refresh user data
+        $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    } else {
+        $_SESSION['error'] = "Gebruiker niet gevonden";
+        header('Location: ./login-form');
+        exit;
+    }
+}
+
 // Get user's rentals
 $rentalStmt = $conn->prepare("
     SELECT r.*, c.brand, c.model, c.image 
