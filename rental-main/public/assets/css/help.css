@@ -10,47 +10,127 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.help-section {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: var(--shadow-md);
-    margin-bottom: 2rem;
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    transition: var(--transition);
+/* Support Options */
+.support-options {
+    margin-bottom: 3rem;
 }
 
-.help-section:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+.support-option {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid #e9ecef;
+}
+
+.support-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.support-option i {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.support-option h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.support-option p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.support-option .btn {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.support-option .btn:hover {
+    color: #0056b3;
+    border-bottom-color: #0056b3;
+}
+
+/* Contact Information */
+.contact-info {
+    padding: 1rem;
+}
+
+.contact-info h5 {
+    color: #333;
+    margin: 1.5rem 0 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-info h5:first-child {
+    margin-top: 0;
+}
+
+.contact-info h5 i {
+    color: #007bff;
+}
+
+.contact-info p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #0056b3;
+}
+
+/* Existing styles */
+.help-section {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
 }
 
 .help-title {
-    color: var(--primary-color);
-    font-weight: 700;
-    margin-bottom: 2rem;
+    color: #333;
     font-size: 2.5rem;
-    text-align: center;
-    position: relative;
-    padding-bottom: 1rem;
-}
-
-.help-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: var(--primary-color);
-    border-radius: 2px;
+    margin-bottom: 2rem;
+    font-weight: 600;
 }
 
 .contact-form-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-col {
+    flex: 1;
 }
 
 .form-group {
@@ -60,93 +140,136 @@
 .form-label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--text-color);
+    color: #333;
     font-weight: 500;
 }
 
 .form-control {
     width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    transition: var(--transition);
-    background-color: var(--secondary-color);
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
+    border-color: #007bff;
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
-    background-color: #ffffff;
 }
 
 .form-select {
     width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    transition: var(--transition);
-    background-color: var(--secondary-color);
-    cursor: pointer;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    transition: border-color 0.3s ease;
 }
 
 .form-select:focus {
+    border-color: #007bff;
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
-    background-color: #ffffff;
-}
-
-textarea.form-control {
-    min-height: 150px;
-    resize: vertical;
 }
 
 .btn-submit {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: var(--primary-color);
+    background: #007bff;
+    color: white;
+    padding: 1rem 2rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-    text-decoration: none;
-    box-shadow: var(--shadow-sm);
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
 }
 
 .btn-submit:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    background: #0056b3;
 }
 
-.form-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -0.75rem;
+/* How It Works Section */
+.help-subtitle {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
-.form-col {
-    flex: 1;
-    padding: 0.75rem;
-    min-width: 250px;
+.help-steps {
+    padding-left: 1.5rem;
+    color: #666;
 }
 
+.help-steps li {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+/* FAQ Section */
+.accordion {
+    margin-top: 1rem;
+}
+
+.accordion-item {
+    background: transparent;
+    margin-bottom: 1rem;
+}
+
+.accordion-button {
+    background: #f8f9fa;
+    color: #333;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #007bff;
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.accordion-body {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0 0 5px 5px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .contact-form-container {
-        padding: 1rem;
+    .form-row {
+        flex-direction: column;
+        gap: 0;
     }
-    
-    .form-col {
-        flex: 100%;
+
+    .help-title {
+        font-size: 2rem;
     }
-    
+
+    .support-option {
+        margin-bottom: 1rem;
+    }
+
+    .help-section {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .help-title {
+        font-size: 1.8rem;
+    }
+
+    .support-option {
+        padding: 1.5rem;
+    }
+
     .btn-submit {
         width: 100%;
     }
