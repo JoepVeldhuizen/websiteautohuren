@@ -32,6 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <li><a href="/rydr/websiteautohuren/rental-main/public/" class="nav-link">Home</a></li>
             <li><a href="/rydr/websiteautohuren/rental-main/public/ons-aanbod" class="nav-link">Ons aanbod</a></li>
             <li><a href="/rydr/websiteautohuren/rental-main/public/help" class="nav-link">Hulp nodig?</a></li>
+            <li><a href="/rydr/websiteautohuren/rental-main/public/over-ons" class="nav-link">Over ons</a></li>
         </ul>
     </nav>
     <div class="menu">
