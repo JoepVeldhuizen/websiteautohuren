@@ -199,6 +199,11 @@ textarea::placeholder {
     background-color: #ffffff;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .logo-link {
@@ -225,6 +230,49 @@ textarea::placeholder {
 .nav-link:hover,
 .nav-link:focus {
     text-decoration: underline;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    min-width: 120px;
+}
+
+.nav-button.login {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+}
+
+.nav-button.login:hover,
+.nav-button.login:focus {
+    background-color: #f0f0f0;
+    outline: 3px solid #666666;
+    outline-offset: 2px;
+}
+
+.nav-button.rent {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+}
+
+.nav-button.rent:hover,
+.nav-button.rent:focus {
+    background-color: #333333;
+    border-color: #333333;
     outline: 3px solid #666666;
     outline-offset: 2px;
 }
@@ -445,6 +493,22 @@ input[type="search"]:focus {
     .car-summary img {
         max-width: 100%;
     }
+
+    .topbar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-button {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
 }
 
 /* Account Page Styles */
@@ -554,7 +618,7 @@ input[type="search"]:focus {
 }
 
 .button-primary {
-    background-color: #000000;
+    background-color: #54a6ff;
     color: #ffffff;
     padding: 1rem 2rem;
     border: none;
