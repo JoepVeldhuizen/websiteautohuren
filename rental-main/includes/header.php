@@ -49,7 +49,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php else: ?>
             <div class="auth-buttons">
                 <a href="/rydr/websiteautohuren/rental-main/public/login-form" class="button-secondary">Inloggen</a>
-                <a href="/rydr/websiteautohuren/rental-main/public/register" class="button-primary">Start met huren</a>
+                <a href="/rydr/websiteautohuren/rental-main/public/register" class="button-primary">Registeren</a>
             </div>
         <?php endif; ?>
     </div>
