@@ -40,7 +40,7 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
     <div class="menu">
         <?php if(isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
             <div class="account">
-                <img src="/rydr/websiteautohuren/rental-main/public/assets/images/profil.png" alt="Profiel" aria-label="Account menu">
+                <img src="/rydr/websiteautohuren/rental-main/public/assets/images/Profil.webp" alt="Profiel" aria-label="Account menu">
                 <div class="account-dropdown">
                     <ul>
                         <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/setting.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/account" class="dropdown-link">Naar account</a></li>

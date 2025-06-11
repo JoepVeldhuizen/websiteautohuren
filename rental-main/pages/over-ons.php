@@ -11,7 +11,7 @@
 <?php require "../includes/header.php" ?>
 <main class="about-container">
     <section class="hero-section">
-        <img src="./assets/images/banner.jpeg" alt="Rydr kantoor in Rotterdam" class="hero-image">
+        <img src="./assets/images/banner.webp" alt="Rydr kantoor in Rotterdam" class="hero-image">
         <div class="hero-content">
             <h1>Over Rydr</h1>
             <p class="hero-subtitle">Uw partner in mobiliteit sinds 2020</p>
@@ -26,7 +26,7 @@
                 <p>In een modern pand met uitzicht op de skyline werken we elke dag aan de mobiliteit van morgen. Loop je een keer binnen? De koffie staat klaar.</p>
             </div>
             <div class="about-image">
-                <img src="./assets/images/work-place.png" alt="Rydr kantoor interieur" class="office-image">
+                <img src="./assets/images/work-place.webp" alt="Rydr kantoor interieur" class="office-image">
             </div>
         </div>
     </section>
@@ -54,16 +54,24 @@
         <p class="team-intro">Ons ervaren team staat klaar om u te helpen met al uw mobiliteitsvragen. Van het selecteren van de perfecte auto tot het bieden van uitstekende service tijdens uw huurperiode.</p>
         <div class="team-grid">
             <div class="team-card">
-                <h3>John Doe</h3>
-                <p>CEO & Oprichter</p>
+                <img src="./assets/images/team/brian-mensah.webp" alt="Brian Mensah" class="team-image">
+                <h3>Brian Mensah</h3>
+                <p>Teamlid</p>
             </div>
             <div class="team-card">
-                <h3>Jane Smith</h3>
-                <p>Operations Manager</p>
+                <img src="./assets/images/team/jasper-van-den-brink.webp" alt="Jasper van den Brink" class="team-image">
+                <h3>Jasper van den Brink</h3>
+                <p>Teamlid</p>
             </div>
             <div class="team-card">
-                <h3>Mike Johnson</h3>
-                <p>Klantenservice Manager</p>
+                <img src="./assets/images/team/lotte-de-graaf.webp" alt="Lotte de Graaf" class="team-image">
+                <h3>Lotte de Graaf</h3>
+                <p>Teamlid</p>
+            </div>
+            <div class="team-card">
+                <img src="./assets/images/team/youssef-amrani.webp" alt="Youssef Amrani" class="team-image">
+                <h3>Youssef Amrani</h3>
+                <p>Teamlid</p>
             </div>
         </div>
     </section>
@@ -191,7 +199,7 @@
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
 

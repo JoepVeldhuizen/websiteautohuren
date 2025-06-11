@@ -211,7 +211,7 @@ $rentals = $rentalStmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="profile-section">
                 <h2>Profiel Informatie</h2>
                 <div class="form-container" class="password-form" style="width: 500px;">
-                    <form action="/rydr/websiteautohuren/rental-main/actions/profile-handler.php" method="POST" class="profile-form">
+                    <form action="/rydr/websiteautohuren/rental-main/public/profile-handler" method="POST" class="profile-form">
                         <div class="form-group">
                             <label for="name">Naam</label>
                             <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name'] ?? ''); ?>" required>
