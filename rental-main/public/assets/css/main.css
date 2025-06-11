@@ -39,12 +39,19 @@ main {
 }
 
 .button-primary {
-  background-color: #3563e9 !important;
-  color: white !important;
+  background-color: #3563e9;
+  color: white;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
   max-width: fit-content;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.button-primary:hover {
+  background-color: #2d4fd1;
 }
 
 .succes-message {
@@ -106,14 +113,16 @@ main {
 
 .auth-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
+  margin-left: 1rem;
 }
 
 .button-secondary {
   background-color: transparent;
   color: #000000;
-  padding: 0.75rem 1.5rem;
+  padding: 8px 16px;
+  font-size: 0.9rem;
   border: 2px solid #000000;
   border-radius: 8px;
   font-weight: 600;
