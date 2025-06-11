@@ -2,6 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+// Zoekterm ophalen uit de URL (GET)
+$searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
 ?>
 <!doctype html>
 <html lang="nl">
@@ -23,8 +25,8 @@ if (session_status() === PHP_SESSION_NONE) {
             Rydr.
         </a>
     </div>
-    <form action="" role="search">
-        <input type="search" name="search" id="search" placeholder="Welke auto wilt u huren?" aria-label="Zoek een auto">
+    <form action="/rydr/websiteautohuren/rental-main/public/ons-aanbod" method="get" role="search">
+        <input type="search" name="search" id="search" placeholder="Welke auto wilt u huren?" aria-label="Zoek een auto" value="<?php echo $searchValue; ?>">
         <img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/search-normal.svg" alt="Zoeken" class="search-icon">
     </form>
     <nav aria-label="Hoofdnavigatie">

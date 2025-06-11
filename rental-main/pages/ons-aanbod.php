@@ -7,8 +7,21 @@ $selectedCategory = isset($_GET['category']) ? (int)$_GET['category'] : null;
 // Haal alle categorieën op
 $categories = getAllCategories();
 
+// Haal de zoekterm op uit de URL
+$searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
+
 // Haal de auto's op (gefilterd op categorie als er een is geselecteerd)
 $cars = getAvailableCars($selectedCategory);
+
+// Filter de auto's op zoekterm (merk, model, omschrijving)
+if ($searchTerm !== '') {
+    $searchTermLower = mb_strtolower($searchTerm);
+    $cars = array_filter($cars, function($car) use ($searchTermLower) {
+        return strpos(mb_strtolower($car['brand']), $searchTermLower) !== false
+            || strpos(mb_strtolower($car['model']), $searchTermLower) !== false
+            || strpos(mb_strtolower($car['description']), $searchTermLower) !== false;
+    });
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,21 +57,25 @@ $cars = getAvailableCars($selectedCategory);
         </div>
         
         <div class="cars-grid">
-            <?php foreach ($cars as $car): ?>
-                <div class="car-card">
-                    <img src="/rydr/websiteautohuren/rental-main/public/images/cars/<?php echo htmlspecialchars($car['image']); ?>" 
-                         alt="<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>">
-                    <div class="car-info">
-                        <h2><?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?></h2>
-                        <p class="category"><?php echo htmlspecialchars($car['category_name']); ?></p>
-                        <p class="year">Bouwjaar: <?php echo htmlspecialchars($car['year']); ?></p>
-                        <p class="price">€<?php echo number_format($car['price_per_day'], 2); ?> per dag</p>
-                        <p class="description"><?php echo htmlspecialchars($car['description']); ?></p>
-                        <a href="/rydr/websiteautohuren/rental-main/public/car-detail?id=<?php echo $car['id']; ?>" 
-                           class="btn btn-primary">Bekijk details</a>
+            <?php if (empty($cars)): ?>
+                <p>Geen auto's gevonden die voldoen aan uw zoekopdracht.</p>
+            <?php else: ?>
+                <?php foreach ($cars as $car): ?>
+                    <div class="car-card">
+                        <img src="/rydr/websiteautohuren/rental-main/public/images/cars/<?php echo htmlspecialchars($car['image']); ?>" 
+                             alt="<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>">
+                        <div class="car-info">
+                            <h2><?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?></h2>
+                            <p class="category"><?php echo htmlspecialchars($car['category_name']); ?></p>
+                            <p class="year">Bouwjaar: <?php echo htmlspecialchars($car['year']); ?></p>
+                            <p class="price">€<?php echo number_format($car['price_per_day'], 2); ?> per dag</p>
+                            <p class="description"><?php echo htmlspecialchars($car['description']); ?></p>
+                            <a href="/rydr/websiteautohuren/rental-main/public/car-detail?id=<?php echo $car['id']; ?>" 
+                               class="btn btn-primary">Bekijk details</a>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </main>
 
