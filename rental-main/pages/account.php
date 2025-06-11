@@ -257,3 +257,5 @@ $rentals = $rentalStmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 </body>
 </html> 
+<input type="text" name="name" value="<?php echo htmlspecialchars($_SESSION['user']['name'] ?? ''); ?>">
+<input type="email" name="email" value="<?php echo htmlspecialchars($_SESSION['user']['email'] ?? ''); ?>">
