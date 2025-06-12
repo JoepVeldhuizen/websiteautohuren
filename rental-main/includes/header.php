@@ -18,6 +18,7 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src="/rydr/websiteautohuren/rental-main/public/js/main.js" defer></script>
 </head>
 <body>
 <div class="topbar">
@@ -26,45 +27,52 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
             Rydr.
         </a>
     </div>
-    <form action="/rydr/websiteautohuren/rental-main/public/ons-aanbod" method="get" role="search">
-        <input type="search" name="search" id="search" placeholder="Welke auto wilt u huren?" aria-label="Zoek een auto" value="<?php echo $searchValue; ?>">
-        <img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/search-normal.svg" alt="Zoeken" class="search-icon">
-    </form>
-    <nav aria-label="Hoofdnavigatie">
-        <ul>
-            <li><a href="/rydr/websiteautohuren/rental-main/public/" class="nav-link">Home</a></li>
-            <li><a href="/rydr/websiteautohuren/rental-main/public/ons-aanbod" class="nav-link">Ons aanbod</a></li>
-            <li><a href="/rydr/websiteautohuren/rental-main/public/help" class="nav-link">Hulp nodig?</a></li>
-            <li><a href="/rydr/websiteautohuren/rental-main/public/over-ons" class="nav-link">Over ons</a></li>
-        </ul>
-    </nav>
-    <div class="menu">
-        <?php if(isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
-            <?php
-            // Check if user has role 1
-            $check_role = $conn->prepare("SELECT role FROM account WHERE id = :id");
-            $check_role->bindParam(":id", $_SESSION['id']);
-            $check_role->execute();
-            $user_role = $check_role->fetch(PDO::FETCH_ASSOC);
-            ?>
-            <?php if($user_role && $user_role['role'] == 1): ?>
-                <a href="/rydr/websiteautohuren/rental-main/public/admin" class="button-secondary">Admin Panel</a>
-            <?php endif; ?>
-            <div class="account">
-                <img src="/rydr/websiteautohuren/rental-main/public/assets/images/Profil.webp" alt="Profiel" aria-label="Account menu">
-                <div class="account-dropdown">
-                    <ul>
-                        <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/setting.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/account" class="dropdown-link">Naar account</a></li>
-                        <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/logout.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/logout" class="dropdown-link">Uitloggen</a></li>
-                    </ul>
+    <button class="hamburger-menu" aria-label="Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="nav-container">
+        <form action="/rydr/websiteautohuren/rental-main/public/ons-aanbod" method="get" role="search" class="search-form">
+            <input type="search" name="search" id="search" placeholder="Welke auto wilt u huren?" aria-label="Zoek een auto" value="<?php echo $searchValue; ?>">
+            <img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/search-normal.svg" alt="Zoeken" class="search-icon">
+        </form>
+        <nav aria-label="Hoofdnavigatie" class="main-nav">
+            <ul>
+                <li><a href="/rydr/websiteautohuren/rental-main/public/" class="nav-link">Home</a></li>
+                <li><a href="/rydr/websiteautohuren/rental-main/public/ons-aanbod" class="nav-link">Ons aanbod</a></li>
+                <li><a href="/rydr/websiteautohuren/rental-main/public/help" class="nav-link">Hulp nodig?</a></li>
+                <li><a href="/rydr/websiteautohuren/rental-main/public/over-ons" class="nav-link">Over ons</a></li>
+            </ul>
+        </nav>
+        <div class="menu">
+            <?php if(isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
+                <?php
+                // Check if user has role 1
+                $check_role = $conn->prepare("SELECT role FROM account WHERE id = :id");
+                $check_role->bindParam(":id", $_SESSION['id']);
+                $check_role->execute();
+                $user_role = $check_role->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <?php if($user_role && $user_role['role'] == 1): ?>
+                    <a href="/rydr/websiteautohuren/rental-main/public/admin" class="button-secondary">Admin Panel</a>
+                <?php endif; ?>
+                <div class="account">
+                    <img src="/rydr/websiteautohuren/rental-main/public/assets/images/Profil.webp" alt="Profiel" aria-label="Account menu">
+                    <div class="account-dropdown">
+                        <ul>
+                            <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/setting.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/account" class="dropdown-link">Naar account</a></li>
+                            <li><img src="/rydr/websiteautohuren/rental-main/public/assets/images/icons/logout.svg" alt=""><a href="/rydr/websiteautohuren/rental-main/public/logout" class="dropdown-link">Uitloggen</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        <?php else: ?>
-            <div class="auth-buttons">
-                <a href="/rydr/websiteautohuren/rental-main/public/login-form" class="button-secondary">Inloggen</a>
-                <a href="/rydr/websiteautohuren/rental-main/public/register" class="button-primary">Registeren</a>
-            </div>
-        <?php endif; ?>
+            <?php else: ?>
+                <div class="auth-buttons">
+                    <a href="/rydr/websiteautohuren/rental-main/public/login-form" class="button-secondary">Inloggen</a>
+                    <a href="/rydr/websiteautohuren/rental-main/public/register" class="button-primary">Registeren</a>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 <div class="content">
