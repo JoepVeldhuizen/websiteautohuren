@@ -93,6 +93,7 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
             <?php endif; ?>
         </div>
     </div>
+    <div class="menu-overlay"></div>
     <button class="hamburger-menu" aria-label="Menu" aria-expanded="false">
         <span></span>
         <span></span>
