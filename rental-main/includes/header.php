@@ -1,4 +1,5 @@
-<?php 
+<?php
+require_once __DIR__ . '/../database/connection.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -39,6 +40,16 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
     </nav>
     <div class="menu">
         <?php if(isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
+            <?php
+            // Check if user has role 1
+            $check_role = $conn->prepare("SELECT role FROM account WHERE id = :id");
+            $check_role->bindParam(":id", $_SESSION['id']);
+            $check_role->execute();
+            $user_role = $check_role->fetch(PDO::FETCH_ASSOC);
+            ?>
+            <?php if($user_role && $user_role['role'] == 1): ?>
+                <a href="/rydr/websiteautohuren/rental-main/public/admin" class="button-secondary">Admin Panel</a>
+            <?php endif; ?>
             <div class="account">
                 <img src="/rydr/websiteautohuren/rental-main/public/assets/images/Profil.webp" alt="Profiel" aria-label="Account menu">
                 <div class="account-dropdown">
