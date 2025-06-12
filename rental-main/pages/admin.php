@@ -22,25 +22,51 @@ if (!$user_role || $user_role['role'] != 1) {
     exit;
 }
 
+// Get all categories from database
+$categories_stmt = $conn->query("SELECT * FROM categories ORDER BY name");
+$categories = $categories_stmt->fetchAll(PDO::FETCH_ASSOC);
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $stmt = $conn->prepare("INSERT INTO cars (brand, model, year, price_per_day, description, image_url) VALUES (:brand, :model, :year, :price_per_day, :description, :image_url)");
+        // Handle image upload
+        if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+            throw new Exception('Er is geen afbeelding geüpload.');
+        }
+
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        $maxFileSize = 5 * 1024 * 1024; // 5MB
+
+        if (!in_array($_FILES['image']['type'], $allowedTypes)) {
+            throw new Exception('Alleen JPEG, PNG en WebP afbeeldingen zijn toegestaan.');
+        }
+
+        if ($_FILES['image']['size'] > $maxFileSize) {
+            throw new Exception('De afbeelding mag niet groter zijn dan 5MB.');
+        }
+
+        // Read the image file
+        $imageData = file_get_contents($_FILES['image']['tmp_name']);
+        $imageType = $_FILES['image']['type'];
+
+        $stmt = $conn->prepare("INSERT INTO cars (brand, model, year, price_per_day, description, image, image_type, category_id) VALUES (:brand, :model, :year, :price_per_day, :description, :image, :image_type, :category_id)");
         
         $stmt->bindParam(':brand', $_POST['brand']);
         $stmt->bindParam(':model', $_POST['model']);
         $stmt->bindParam(':year', $_POST['year']);
         $stmt->bindParam(':price_per_day', $_POST['price_per_day']);
         $stmt->bindParam(':description', $_POST['description']);
-        $stmt->bindParam(':image_url', $_POST['image_url']);
+        $stmt->bindParam(':image', $imageData, PDO::PARAM_LOB);
+        $stmt->bindParam(':image_type', $imageType);
+        $stmt->bindParam(':category_id', $_POST['category_id']);
         
         $stmt->execute();
         
         $_SESSION['success'] = "Auto succesvol toegevoegd!";
         header('Location: /rydr/websiteautohuren/rental-main/pages/admin.php');
         exit;
-    } catch (PDOException $e) {
-        $_SESSION['error'] = "Er is een fout opgetreden bij het toevoegen van de auto.";
+    } catch (Exception $e) {
+        $_SESSION['error'] = "Er is een fout opgetreden bij het toevoegen van de auto: " . $e->getMessage();
     }
 }
 ?>
@@ -85,7 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ddd;
@@ -130,6 +157,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: #f8d7da;
             color: #721c24;
         }
+
+        .image-preview {
+            max-width: 200px;
+            margin-top: 1rem;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -156,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="admin-section">
             <h2>Nieuwe Auto Toevoegen</h2>
-            <form method="POST" action="">
+            <form method="POST" action="" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="brand">Merk</label>
                     <input type="text" id="brand" name="brand" required>
@@ -183,14 +216,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-group">
-                    <label for="image_url">Afbeelding URL</label>
-                    <input type="url" id="image_url" name="image_url" required>
+                    <label for="image">Afbeelding</label>
+                    <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp" required onchange="previewImage(this)">
+                    <img id="imagePreview" class="image-preview" src="#" alt="Preview">
+                </div>
+
+                <div class="form-group">
+                    <label for="category_id">Categorie</label>
+                    <select id="category_id" name="category_id" required>
+                        <option value="">Selecteer een categorie</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo htmlspecialchars($category['id']); ?>">
+                                <?php echo htmlspecialchars($category['name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <button type="submit" class="submit-button">Auto Toevoegen</button>
             </form>
         </div>
     </main>
+
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('imagePreview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 </body>

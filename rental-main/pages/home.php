@@ -22,7 +22,7 @@ $cars = getAvailableCars();
         <div class="cars-grid">
             <?php foreach ($cars as $car): ?>
                 <div class="car-card">
-                    <img src="/rydr/websiteautohuren/rental-main/public/images/cars/<?php echo htmlspecialchars($car['image']); ?>" 
+                    <img src="/rydr/websiteautohuren/rental-main/public/get-image.php?id=<?php echo $car['id']; ?>" 
                          alt="<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>">
                     <div class="car-info">
                         <h2><?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?></h2>
