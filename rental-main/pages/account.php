@@ -54,7 +54,7 @@ if (!$user) {
 
 // Get user's rentals
 $rentalStmt = $conn->prepare("
-    SELECT r.*, c.brand, c.model, c.image 
+    SELECT r.*, c.brand, c.model 
     FROM rentals r 
     JOIN cars c ON r.car_id = c.id 
     WHERE r.user_id = :user_id 
@@ -257,7 +257,7 @@ $rentals = $rentalStmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="rentals-grid">
                         <?php foreach ($rentals as $rental): ?>
                             <div class="rental-card">
-                                <img src="/rydr/websiteautohuren/rental-main/public/images/cars/<?php echo htmlspecialchars($rental['image']); ?>" 
+                                <img src="/rydr/websiteautohuren/rental-main/public/get-image.php?id=<?php echo $rental['car_id']; ?>" 
                                      alt="<?php echo htmlspecialchars($rental['brand'] . ' ' . $rental['model']); ?>">
                                 <div class="rental-info">
                                     <h3><?php echo htmlspecialchars($rental['brand'] . ' ' . $rental['model']); ?></h3>
