@@ -28,37 +28,47 @@ error_log("Processing update for user ID: " . $user_id);
 error_log("New name: " . $new_name);
 error_log("New email: " . $new_email);
 
-// Eerst proberen in de users tabel
-$update_user = $conn->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
-$update_user->bindParam(":name", $new_name);
-$update_user->bindParam(":email", $new_email);
-$update_user->bindParam(":id", $user_id);
-$update_user->execute();
+try {
+    // Start transaction
+    $conn->beginTransaction();
 
-// Als er geen rijen zijn bijgewerkt in users, probeer dan de account tabel
-if ($update_user->rowCount() === 0) {
-    error_log("No update in users table, trying account table");
-    $update_account = $conn->prepare("UPDATE account SET name = :name, email = :email WHERE id = :id");
-    $update_account->bindParam(":name", $new_name);
+    // Check if email is already in use by another user
+    $check_email = $conn->prepare("SELECT id FROM users WHERE email = :email AND id != :id");
+    $check_email->bindParam(":email", $new_email);
+    $check_email->bindParam(":id", $user_id);
+    $check_email->execute();
+
+    if ($check_email->rowCount() > 0) {
+        throw new Exception("Dit e-mailadres is al in gebruik door een ander account.");
+    }
+
+    // Update users table
+    $update_user = $conn->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
+    $update_user->bindParam(":name", $new_name);
+    $update_user->bindParam(":email", $new_email);
+    $update_user->bindParam(":id", $user_id);
+    $update_user->execute();
+
+    // Update account table (only email, since it doesn't have a name column)
+    $update_account = $conn->prepare("UPDATE account SET email = :email WHERE id = :id");
     $update_account->bindParam(":email", $new_email);
     $update_account->bindParam(":id", $user_id);
     $update_account->execute();
-    
-    if ($update_account->rowCount() === 0) {
-        error_log("No update in account table either");
-        $_SESSION['error'] = "Gebruiker niet gevonden";
-    } else {
-        error_log("Successfully updated account table");
-        $_SESSION['success'] = "Profiel succesvol bijgewerkt";
-    }
-} else {
-    error_log("Successfully updated users table");
-    $_SESSION['success'] = "Profiel succesvol bijgewerkt";
-}
 
-// Update de sessie variabelen
-$_SESSION['name'] = $new_name;
-$_SESSION['email'] = $new_email;
+    // Commit transaction
+    $conn->commit();
+
+    // Update session variables
+    $_SESSION['name'] = $new_name;
+    $_SESSION['email'] = $new_email;
+    $_SESSION['success'] = "Profiel succesvol bijgewerkt";
+
+} catch (Exception $e) {
+    // Rollback transaction on error
+    $conn->rollBack();
+    error_log("Profile update error: " . $e->getMessage());
+    $_SESSION['error'] = $e->getMessage();
+}
 
 header('Location: /rydr/websiteautohuren/rental-main/public/account');
 exit(); 

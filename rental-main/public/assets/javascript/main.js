@@ -13,9 +13,10 @@ if (accountImage) {
     });
 }
 
-const startButton = document.querySelector('.button-primary');
-if (startButton) {
-    startButton.addEventListener('click', function(e) {
+// Only show login modal for the register button on the homepage
+const registerButton = document.querySelector('.auth-buttons .button-primary');
+if (registerButton) {
+    registerButton.addEventListener('click', function(e) {
         e.preventDefault();
         const modal = document.getElementById('loginModal');
         if (modal) modal.classList.remove('hidden');
