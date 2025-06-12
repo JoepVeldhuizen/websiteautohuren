@@ -27,11 +27,6 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
             Rydr.
         </a>
     </div>
-    <button class="hamburger-menu" aria-label="Menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
     <div class="nav-container">
         <form action="/rydr/websiteautohuren/rental-main/public/ons-aanbod" method="get" role="search" class="search-form">
             <input type="search" name="search" id="search" placeholder="Welke auto wilt u huren?" aria-label="Zoek een auto" value="<?php echo $searchValue; ?>">
@@ -45,10 +40,34 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
                 <li><a href="/rydr/websiteautohuren/rental-main/public/over-ons" class="nav-link">Over ons</a></li>
             </ul>
         </nav>
+        <!-- Mobile Category Filter -->
+        <?php
+        $currentPage = basename($_SERVER['PHP_SELF']);
+        $isOnsAanbod = $currentPage === 'ons-aanbod.php' || strpos($_SERVER['REQUEST_URI'], 'ons-aanbod') !== false;
+        if ($isOnsAanbod) {
+            require_once __DIR__ . '/../includes/get_cars.php';
+            $categories = getAllCategories();
+            $selectedCategory = isset($_GET['category']) ? (int)$_GET['category'] : null;
+        ?>
+        <div class="category-filter mobile-only">
+            <h2>Filter op categorie</h2>
+            <div class="category-buttons">
+                <a href="/rydr/websiteautohuren/rental-main/public/ons-aanbod" 
+                   class="btn <?php echo $selectedCategory === null ? 'btn-primary' : 'btn-secondary'; ?>">
+                    Alle auto's
+                </a>
+                <?php foreach ($categories as $category): ?>
+                    <a href="/rydr/websiteautohuren/rental-main/public/ons-aanbod?category=<?php echo $category['id']; ?>" 
+                       class="btn <?php echo $selectedCategory == $category['id'] ? 'btn-primary' : 'btn-secondary'; ?>">
+                        <?php echo htmlspecialchars($category['name']); ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php } ?>
         <div class="menu">
             <?php if(isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
                 <?php
-                // Check if user has role 1
                 $check_role = $conn->prepare("SELECT role FROM account WHERE id = :id");
                 $check_role->bindParam(":id", $_SESSION['id']);
                 $check_role->execute();
@@ -74,5 +93,10 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
             <?php endif; ?>
         </div>
     </div>
+    <button class="hamburger-menu" aria-label="Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 </div>
 <div class="content">

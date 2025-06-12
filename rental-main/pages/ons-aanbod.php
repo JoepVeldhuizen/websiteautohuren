@@ -10,7 +10,7 @@ $categories = getAllCategories();
 // Haal de zoekterm op uit de URL
 $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
 
-// Haal de auto's op (gefilterd op categorie als er een is geselecteerd)
+// Haal de auto's op (gefiltered op categorie als er een is geselecteerd)
 $cars = getAvailableCars($selectedCategory);
 
 // Filter de auto's op zoekterm (merk, model, omschrijving)
@@ -40,7 +40,7 @@ if ($searchTerm !== '') {
         <h1>Ons Complete Aanbod</h1>
         
         <!-- Categorie filter -->
-        <div class="category-filter">
+        <div class="category-filter desktop-only">
             <h2>Filter op categorie</h2>
             <div class="category-buttons">
                 <a href="/rydr/websiteautohuren/rental-main/public/ons-aanbod" 
