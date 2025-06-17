@@ -2,7 +2,7 @@
 session_start();
 error_log("Account page - Session data: " . print_r($_SESSION, true));
 
-require_once __DIR__ . '/../includes/header.php';
+require_once '../includes/header.php';
 require_once __DIR__ . '/../database/connection.php';
 
 // Check if user is logged in
@@ -65,13 +65,15 @@ $rentalStmt->execute();
 $rentals = $rentalStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
+<link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/assets/css/account.css">
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account - Rydr</title>
-    <link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/account.css">
     <style>
         /* Fallback styles in case the external CSS fails to load */
         .account-container {
@@ -210,7 +212,7 @@ $rentals = $rentalStmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="account-container">
             <div class="profile-section">
                 <h2>Profiel Informatie</h2>
-                <div class="form-container" class="password-form" style="width: 500px;">
+                <div class="form-container" class="password-form" style="width: 150px;">
                     <form action="/rydr/websiteautohuren/rental-main/public/profile-handler" method="POST" class="profile-form">
                         <div class="form-group">
                             <label for="name">Naam</label>

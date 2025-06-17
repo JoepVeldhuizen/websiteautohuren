@@ -2,17 +2,23 @@ footer {
   background-color: white;
   display: flex;
   padding: 2em 4em;
+  flex-wrap: wrap;
+  gap: 2em;
+  width: 100%;
+  box-sizing: border-box;
 
   .brand {
     flex: 1;
+    min-width: 200px;
   }
 
   .footer-links {
+    width: 100%;
     flex: 1;
     display: flex;
     gap: 3em;
-
     justify-content: flex-end;
+    flex-wrap: wrap;
 
     .links {
       h3 {
@@ -21,6 +27,7 @@ footer {
 
       display: flex;
       flex-direction: column;
+      min-width: 150px;
 
       ul {
         padding-left: 0;
@@ -45,15 +52,46 @@ footer {
   align-items: center;
   background-color: white;
   border-top: 1px solid rgba(19, 19, 19, 0.16);
+  flex-wrap: wrap;
+  gap: 1em;
+  width: 100%;
+  box-sizing: border-box;
 
   .legal-links ul {
     display: flex;
     gap: 1em;
     list-style: none;
+    flex-wrap: wrap;
 
     a {
       text-decoration: none;
       color: black;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 2em;
+    flex-direction: column;
+
+    .footer-links {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      gap: 3em;
+      justify-content: flex-end;
+    }
+  }
+
+  .legal-footer {
+    padding: 1.5em;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+
+    .legal-links ul {
+      justify-content: center;
     }
   }
 }

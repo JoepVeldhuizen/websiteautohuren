@@ -273,8 +273,16 @@ textarea::placeholder {
 /* Footer styles */
 footer {
     background-color: #ffffff;
-    padding: 3rem 2rem;
+    padding: 3rem 0;
     border-top: 2px solid #000000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 footer h2,
@@ -301,8 +309,16 @@ footer h3 {
 
 .legal-footer {
     background-color: #f8f8f8;
-    padding: 1rem 2rem;
+    padding: 1rem 0;
     border-top: 1px solid #000000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.legal-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .legal-link {
@@ -317,6 +333,24 @@ footer h3 {
     text-decoration: underline;
     outline: 3px solid #666666;
     outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 2rem 0;
+    }
+    
+    footer .container {
+        padding: 0 1rem;
+    }
+    
+    .legal-footer {
+        padding: 0.75rem 0;
+    }
+    
+    .legal-footer .container {
+        padding: 0 1rem;
+    }
 }
 
 /* Dropdown styles */
@@ -848,180 +882,61 @@ input[type="search"]:focus {
 @media (max-width: 768px) {
     .topbar {
         padding: 0.75rem 1rem;
+        position: relative;
     }
 
     .nav-container {
         position: fixed;
         top: 0;
-        right: 0.75rem;
-        left: auto;
-        width: 65vw;
-        max-width: 270px;
-        min-width: 180px;
-        height: 96vh;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
         background-color: var(--background-color);
         flex-direction: column;
-        padding: 3.5rem 0.5rem 1rem 0.5rem;
-        transition: right 0.3s;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        padding: 4rem 1.5rem 1.5rem 1.5rem;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.1);
         overflow-y: auto;
         z-index: 1200;
-        border-radius: 18px 0 0 18px;
-        margin-right: 0;
-        align-items: center;
+        margin: 0;
     }
+
     .nav-container.active {
-        right: 0.75rem;
-    }
-    .main-nav ul {
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
-    .main-nav ul li {
-        width: 100%;
-        text-align: center;
-    }
-    .menu {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .account {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 1rem;
-        width: 100%;
-    }
-    .account img {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        margin-bottom: 0.3rem;
+        right: 0;
     }
 
-    .search-form {
-        width: 100%;
-        margin: 0 0 1rem 0;
-    }
-
-    .search-form input[type="search"] {
-        width: 100%;
-        padding: 0.75rem 2.5rem 0.75rem 1rem;
-        font-size: var(--font-size-small);
-    }
-
-    .main-nav {
-        width: 100%;
-        margin: 1rem 0;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .main-nav .nav-link {
+    .hamburger-menu {
         display: block;
-        padding: 0.75rem 0;
-        font-size: var(--font-size-normal);
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .mobile-only .category-filter {
-        width: 100%;
-        margin: 1rem 0;
-        padding: 0;
-    }
-
-    .mobile-only .category-filter h2 {
-        font-size: var(--font-size-h3);
-        margin-bottom: 0.75rem;
-    }
-
-    .mobile-only .category-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .mobile-only .category-buttons .btn {
-        width: 100%;
-        text-align: center;
-        padding: 0.75rem;
-        font-size: var(--font-size-small);
-    }
-
-    .menu {
-        width: 100%;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border-color);
-    }
-
-    .auth-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        width: 100%;
-        align-items: center;
-    }
-
-    .auth-buttons a {
-        font-size: 1rem;
-        padding: 0.5rem 0.7rem;
-        width: 100%;
-        box-sizing: border-box;
-        text-align: center;
-    }
-
-    .account-dropdown {
-        position: static;
+        position: relative;
+        z-index: 1201;
         background: none;
-        box-shadow: none;
-        width: 100%;
-        min-width: 0;
-        padding: 0;
-        margin-top: 0.2rem;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        margin-left: auto;
     }
 
-    .account-dropdown ul {
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.2rem;
+    .hamburger-menu span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: #333;
+        margin: 5px 0;
+        transition: all 0.3s ease-in-out;
+        border-radius: 2px;
     }
 
-    .account-dropdown ul li {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.95rem;
+    .hamburger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
     }
 
-    .account-dropdown ul li img {
-        width: 18px;
-        height: 18px;
-        margin-right: 0.3rem;
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
     }
 
-    .dropdown-link {
-        font-size: 0.98rem;
-        padding: 0.3rem 0.6rem;
-        border-radius: 6px;
-        width: 100%;
-        display: inline-block;
-        text-align: center;
-    }
-
-    .dropdown-link:hover, .dropdown-link:focus {
-        background: var(--hover-color, #f2f2f2);
+    .hamburger-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
     }
 
     .menu-overlay {
@@ -1031,12 +946,110 @@ input[type="search"]:focus {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0,0,0,0.18);
+        background: rgba(0,0,0,0.5);
         z-index: 1199;
-        transition: opacity 0.2s;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
     }
+
     .nav-container.active ~ .menu-overlay {
         display: block;
+        opacity: 1;
+    }
+
+    .main-nav {
+        width: 100%;
+        margin: 1.5rem 0;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .main-nav .nav-link {
+        display: block;
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid var(--border-color);
+        text-align: left;
+    }
+
+    .search-form {
+        width: 100%;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .search-form input[type="search"] {
+        width: 100%;
+        padding: 0.75rem 2.5rem 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    .menu {
+        width: 100%;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .auth-buttons a {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .account {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .account img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .account-dropdown {
+        position: static;
+        background: none;
+        box-shadow: none;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .account-dropdown ul {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .account-dropdown ul li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+    }
+
+    .account-dropdown ul li img {
+        width: 20px;
+        height: 20px;
+        margin-right: 0.75rem;
+    }
+
+    .dropdown-link {
+        font-size: 1rem;
+        padding: 0.5rem 0;
+        width: 100%;
+        text-align: left;
     }
 }
 
@@ -1139,28 +1152,6 @@ input[type="search"]:focus {
     pointer-events: auto;
 }
 
-@media (max-width: 768px) {
-    .hamburger-menu {
-        display: block;
-        position: absolute;
-        right: 1.5rem;
-        top: 1.2rem;
-        z-index: 1201;
-        transition: opacity 0.2s;
-    }
-    .nav-container.active + .hamburger-menu {
-        opacity: 0;
-        pointer-events: none;
-    }
-    .nav-container:not(.active) + .hamburger-menu {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .category-filter.mobile-only {
-        display: block;
-    }
-}
-
 @media (min-width: 769px) {
     .hamburger-menu {
         display: none !important;
@@ -1184,5 +1175,204 @@ input[type="search"]:focus {
     .btn {
         padding: 0.5rem 0.75rem;
         font-size: var(--font-size-small);
+    }
+}
+
+/* Car Details Page */
+.car-detail {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.car-detail .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.car-detail .advertorial {
+    position: relative;
+    padding: 3rem 2rem;
+    background: var(--background-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.car-detail .advertorial h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+    color: #000000;
+}
+
+.car-detail .advertorial p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+    color: #000000;
+}
+
+.car-detail .advertorial img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    grid-column: 2;
+    grid-row: 1 / span 3;
+}
+
+.car-detail .advertorial .background-header-element {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.05;
+}
+
+.car-detail .white-background {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.car-detail .white-background h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #000000;
+}
+
+.car-detail .rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.car-detail .rating .stars {
+    display: inline-block;
+    width: 120px;
+    height: 24px;
+    background: url('/rydr/websiteautohuren/rental-main/public/assets/images/icons/stars.svg') no-repeat;
+    background-size: contain;
+}
+
+.car-detail .car-type {
+    margin-top: 2rem;
+}
+
+.car-detail .car-type .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.car-detail .car-type .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.1rem;
+}
+
+.car-detail .car-type .row:last-child {
+    border-bottom: none;
+}
+
+.car-detail .car-type .accent-color {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.car-detail .call-to-action {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.car-detail .call-to-action .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.car-detail .call-to-action .font-weight-bold {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+.car-detail .call-to-action .button-primary {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .car-detail {
+        padding: 1rem;
+    }
+
+    .car-detail .advertorial {
+        padding: 1.5rem 1rem;
+        grid-template-columns: 1fr;
+    }
+
+    .car-detail .advertorial h2 {
+        font-size: 1.5rem;
+    }
+
+    .car-detail .advertorial img {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .car-detail .white-background {
+        padding: 1.5rem 1rem;
+    }
+
+    .car-detail .white-background h2 {
+        font-size: 1.25rem;
+    }
+
+    .car-detail .car-type .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .car-detail .car-type .row {
+        padding: 0.5rem 0;
+        font-size: 0.95rem;
+    }
+
+    .car-detail .call-to-action {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .car-detail .call-to-action .font-weight-bold {
+        font-size: 1.25rem;
+    }
+
+    .car-detail .call-to-action .button-primary {
+        width: 100%;
+        text-align: center;
     }
 } 

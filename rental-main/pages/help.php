@@ -2,7 +2,8 @@
 require_once '../includes/header.php';
 ?>
 
-<link rel="stylesheet" href="../public/assets/css/help.css">
+<link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/css/style.css">
+<link rel="stylesheet" href="/rydr/websiteautohuren/rental-main/public/assets/css/help.css">
 
 <div class="container mt-5">
     <h1 class="text-center help-title mb-5">Hulp & Ondersteuning</h1>

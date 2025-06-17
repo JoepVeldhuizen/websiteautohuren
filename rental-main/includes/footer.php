@@ -56,7 +56,5 @@
         <button class="modal-close" aria-label="Sluiten">&times;</button>
     </div>
 </div>
-<script src="assets/javascript/main.js"></script>
-
 </body>
 </html>

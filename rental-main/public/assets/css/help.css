@@ -10,112 +10,77 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Help Page Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.help-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
 /* Support Options */
 .support-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
     margin-bottom: 3rem;
 }
 
 .support-option {
-    background: #f8f9fa;
+    background: white;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    height: 100%;
-    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
 }
 
 .support-option:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    background: #fff;
 }
 
 .support-option i {
-    font-size: 2.5rem;
-    color: #007bff;
+    font-size: 2rem;
+    color: #000;
     margin-bottom: 1rem;
 }
 
 .support-option h4 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .support-option p {
     color: #666;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-}
-
-.support-option .btn {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-block;
-    padding: 0.5rem 0;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.support-option .btn:hover {
-    color: #0056b3;
-    border-bottom-color: #0056b3;
-}
-
-/* Contact Information */
-.contact-info {
-    padding: 1rem;
-}
-
-.contact-info h5 {
-    color: #333;
-    margin: 1.5rem 0 0.5rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.contact-info h5:first-child {
-    margin-top: 0;
-}
-
-.contact-info h5 i {
-    color: #007bff;
-}
-
-.contact-info p {
-    color: #666;
     margin-bottom: 1rem;
 }
 
-.contact-info a {
-    color: #007bff;
+.support-option .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #000;
+    color: white;
     text-decoration: none;
-    transition: color 0.3s ease;
+    border-radius: 6px;
+    transition: background-color 0.2s;
 }
 
-.contact-info a:hover {
-    color: #0056b3;
+.support-option .btn:hover {
+    background: #333;
 }
 
-/* Existing styles */
+/* Contact Form */
 .help-section {
-    background: #fff;
+    background: white;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
-}
-
-.help-title {
-    color: #333;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    font-weight: 600;
 }
 
 .contact-form-container {
@@ -124,13 +89,10 @@
 }
 
 .form-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
     margin-bottom: 1rem;
-}
-
-.form-col {
-    flex: 1;
 }
 
 .form-group {
@@ -140,137 +102,176 @@
 .form-label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #333;
     font-weight: 500;
 }
 
 .form-control {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
 }
 
 .form-control:focus {
-    border-color: #007bff;
     outline: none;
+    border-color: #000;
 }
 
 .form-select {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
     background-color: white;
-    transition: border-color 0.3s ease;
 }
 
-.form-select:focus {
-    border-color: #007bff;
-    outline: none;
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
 }
 
 .btn-submit {
-    background: #007bff;
-    color: white;
+    display: inline-block;
     padding: 1rem 2rem;
+    background: #000;
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 1rem;
     cursor: pointer;
-    font-size: 1.1rem;
-    transition: background 0.3s ease;
+    transition: background-color 0.2s;
 }
 
 .btn-submit:hover {
-    background: #0056b3;
+    background: #333;
 }
 
-/* How It Works Section */
+/* Contact Info */
+.contact-info {
+    padding: 1rem;
+}
+
+.contact-info h5 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.contact-info h5:first-child {
+    margin-top: 0;
+}
+
+.contact-info p {
+    margin: 0 0 1rem;
+    color: #666;
+}
+
+.contact-info a {
+    color: #000;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* How It Works */
 .help-subtitle {
-    color: #333;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     margin-bottom: 1rem;
-    font-weight: 600;
 }
 
 .help-steps {
     padding-left: 1.5rem;
-    color: #666;
+    margin: 0;
 }
 
 .help-steps li {
-    margin-bottom: 0.8rem;
-    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    color: #666;
 }
 
 /* FAQ Section */
 .accordion {
-    margin-top: 1rem;
+    border: none;
 }
 
 .accordion-item {
-    background: transparent;
+    border: none !important;
     margin-bottom: 1rem;
 }
 
 .accordion-button {
-    background: #f8f9fa;
-    color: #333;
-    font-weight: 500;
-    padding: 1rem 1.5rem;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    background: white !important;
+    border: 2px solid #ddd !important;
+    border-radius: 6px !important;
+    padding: 1rem !important;
+    font-weight: 500 !important;
 }
 
 .accordion-button:not(.collapsed) {
-    background: #007bff;
-    color: white;
-}
-
-.accordion-button:focus {
-    box-shadow: none;
-    border-color: transparent;
+    color: #000 !important;
+    background: #f8f8f8 !important;
 }
 
 .accordion-body {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 0 0 5px 5px;
-    color: #666;
-    line-height: 1.6;
+    padding: 1rem !important;
+    background: #f8f8f8 !important;
+    border: 2px solid #ddd !important;
+    border-top: none !important;
+    border-radius: 0 0 6px 6px !important;
 }
 
-/* Responsive Design */
+/* Mobile Styles */
 @media (max-width: 768px) {
-    .form-row {
-        flex-direction: column;
-        gap: 0;
+    .container {
+        padding: 1rem;
     }
 
     .help-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .support-options {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .support-option {
-        margin-bottom: 1rem;
+        padding: 1.5rem;
     }
 
     .help-section {
         padding: 1.5rem;
     }
-}
 
-@media (max-width: 576px) {
-    .help-title {
-        font-size: 1.8rem;
+    .form-row {
+        grid-template-columns: 1fr;
     }
 
-    .support-option {
-        padding: 1.5rem;
+    .contact-info {
+        padding: 0.5rem;
     }
 
-    .btn-submit {
-        width: 100%;
+    .contact-info h5 {
+        font-size: 1rem;
+    }
+
+    .help-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .accordion-button {
+        font-size: 0.95rem !important;
+        padding: 0.75rem !important;
+    }
+
+    .accordion-body {
+        font-size: 0.9rem;
     }
 } 

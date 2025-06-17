@@ -4,6 +4,8 @@
   gap: 1em;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .advertorial {
@@ -13,6 +15,7 @@
   padding: 24px;
   flex-direction: column;
   border-radius: 10px;
+  box-sizing: border-box;
 
   h2 {
     color: white;
@@ -37,5 +40,18 @@
     position: absolute;
 
     z-index: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .advertorials {
+    padding: 1em 2em 0 2em;
+    flex-direction: column;
+  }
+
+  .advertorial {
+    h2, p {
+      max-width: 100%;
+    }
   }
 }
